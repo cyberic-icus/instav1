@@ -1,15 +1,14 @@
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 
-
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.generics import (ListAPIView,
 	RetrieveUpdateDestroyAPIView,
 	ListCreateAPIView,
 	RetrieveAPIView,
 	CreateAPIView,
+	RetrieveDestroyAPIView,
 	RetrieveUpdateAPIView)
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
-
 
 from .permissions import *
 from .models import CustomUser, Post
@@ -67,9 +66,8 @@ class SinglePostView(RetrieveAPIView):
 	
 	                                                                                    # Конкретный пост
 
-class SingleUserUpdateDeleteView(RetrieveUpdateDestroyAPIView):
+class SingleUserDeleteView(RetrieveDestroyAPIView):
 	permission_classes = (IsAdminUser, )
-	queryset = CustomUser.objects.all()
+	queryset = CustomUser.objects.filter(reqdel = True)
 	serializer_class = UserSerializer
-	                                                                                    # Обновить данные конкретного пользователя, разрешение на обновление - владелец профиля
-
+	                                                                                    # Удаление
