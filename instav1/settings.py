@@ -146,5 +146,8 @@ AUTH_USER_MODEL = 'users.CustomUser'
 SITE_ID = 1
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+<<<<<<< HEAD
 
 #ALLOWED_HOSTS = 'localhost:8000'
+=======
+>>>>>>> 63968d095e8537ae4372adabaa3af9f146f93ced
